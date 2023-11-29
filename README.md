@@ -1,7 +1,7 @@
-# Nintendo Switch S13 Launcher
+# Nintendo Switch Fortnite Latest Launcher
 
-Made by me to make Epic Games Auth easier
-
+Made by AntogamerYT to make Epic Games Auth easier
+This is useless if you aren't banned by Nintendo.
 
 ## Building
 
