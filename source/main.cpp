@@ -95,9 +95,9 @@ void printDialog(bool actionCancelled, string message = "", bool clear = true) {
         printf("%s\n\n", message.c_str());
     }
 
-    printf("-----------------FORTNITE S13 LAUNCHER-----------------\n");
+    printf("-----------------FORTNITE LATEST LAUNCHER-----------------\n");
     printf("Version %s\n", VERSION);
-    printf("Made by thisisanto <3\n\n");
+    printf("Made by thisisanto and edited to work with latest by YoshiCrystal <3\n\n");
 
     printf("A - Manage your account\nB - Launch Fortnite\nX - Restore CommandLine arguments\n+ - Exit\n\n");
     consoleUpdate(NULL);
@@ -134,17 +134,17 @@ int main(int argc, char* argv[])
         consoleExit(NULL);
         return 0;
     }
-    DIR *dir = opendir("sdmc:/switch/S13Launcher");
+    DIR *dir = opendir("sdmc:/switch/FortLatestLauncher");
     if(!dir) {
-        mkdir("sdmc:/switch/S13Launcher", 0777);
+        mkdir("sdmc:/switch/FortLatestLauncher", 0777);
     }
     closedir(dir);
 
-    FILE *file = fopen("sdmc:/atmosphere/contents/010025400AECE000/romfs/UE4CommandLine.txt", "r");
+    FILE *file = fopen("sdmc:/atmosphere/contents/010025400AECE000/romfs/UECommandLine.txt", "r");
 
     if (!file) {
         fclose(file);
-        file = fopen("sdmc:/atmosphere/contents/010025400AECE000/romfs/UE4CommandLine.txt", "w");
+        file = fopen("sdmc:/atmosphere/contents/010025400AECE000/romfs/UECommandLine.txt", "w");
         fprintf(file, "../../../FortniteGame/FortniteGame.uproject -skippatchcheck");
     }
     fclose(file);
@@ -252,7 +252,7 @@ int main(int argc, char* argv[])
                 continue;
             }
 
-            std::unordered_map<string, string> arguments = ParseUE4CommandLine("sdmc:/atmosphere/contents/010025400AECE000/romfs/UE4CommandLine.txt");
+            std::unordered_map<string, string> arguments = ParseUE4CommandLine("sdmc:/atmosphere/contents/010025400AECE000/romfs/UECommandLine.txt");
 
             if (arguments["AUTH_TYPE"] != "exchangecode") 
                 storeOldUE4CommandLine(arguments);
@@ -286,14 +286,14 @@ int main(int argc, char* argv[])
         }
 
         if (kDown & HidNpadButton_X) {
-            std::unordered_map<string, string> arguments = ParseUE4CommandLine("sdmc:/switch/S13Launcher/OldCommandLine.txt");
+            std::unordered_map<string, string> arguments = ParseUE4CommandLine("sdmc:/switch/FortLatestLauncher/OldCommandLine.txt");
 
             if (arguments["failedtoopen"].empty())
             {
 
                 SaveUE4CommandLine(RebuildUE4CommandLine(arguments));
 
-                remove("sdmc:/switch/S13Launcher/OldCommandLine.txt");
+                remove("sdmc:/switch/FortLatestLauncher/OldCommandLine.txt");
 
                 printDialog(false, "CommandLine arguments restored.");
             }
