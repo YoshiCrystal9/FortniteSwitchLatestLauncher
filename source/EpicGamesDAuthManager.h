@@ -24,7 +24,7 @@ size_t WriteCallback(void *contents, size_t size, size_t nmemb, std::string *res
 
 
 json GetDAuth() {
-    FILE *file = fopen("sdmc:/switch/S13Launcher/auth.json", "r");
+    FILE *file = fopen("sdmc:/switch/FortLatestLauncher/auth.json", "r");
 
     if (file)
     {
