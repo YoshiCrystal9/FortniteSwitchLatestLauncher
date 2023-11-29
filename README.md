@@ -3,6 +3,8 @@
 Made by AntogamerYT to make Epic Games Auth easier
 This is useless if you aren't banned by Nintendo.
 
+This fork doesn't have a proper update checker yet.
+
 ## Building
 
 Make sure you have DevKitPro/MSYS2 installed 
