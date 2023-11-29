@@ -65,7 +65,7 @@ std::unordered_map<string, string> ParseUE4CommandLine(const std::string &filePa
 
 void SaveUE4CommandLine(std::string arguments)
 {
-    FILE *file = std::fopen("sdmc:/atmosphere/contents/010025400AECE000/romfs/UE4CommandLine.txt", "w");
+    FILE *file = std::fopen("sdmc:/atmosphere/contents/010025400AECE000/romfs/UECommandLine.txt", "w");
     if (file)
     {
         std::fprintf(file, arguments.c_str());
@@ -73,14 +73,14 @@ void SaveUE4CommandLine(std::string arguments)
     }
     else
     {
-        std::cerr << "Failed to open the UE4CommandLine.txt file." << std::endl;
+        std::cerr << "Failed to open the UECommandLine.txt file." << std::endl;
     }
 }
 
 void storeOldUE4CommandLine(std::unordered_map<string, string> arguments)
 {
     std::string commandLine = RebuildUE4CommandLine(arguments);
-    FILE *file = std::fopen("sdmc:/switch/S13Launcher/OldCommandLine.txt", "w");
+    FILE *file = std::fopen("sdmc:/switch/FortLatestLauncher/OldCommandLine.txt", "w");
     if (file)
     {
         std::fprintf(file, commandLine.c_str());
