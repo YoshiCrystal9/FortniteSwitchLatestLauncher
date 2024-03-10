@@ -47,14 +47,14 @@ json GetDAuth() {
 }
 
 void SaveDAuth(json j) {
-    FILE *file = std::fopen("sdmc:/switch/S13Launcher/auth.json", "w");
+    FILE *file = std::fopen("sdmc:/switch/FortLatestLauncher/auth.json", "w");
     std::string s = j.dump();
     fputs(s.c_str(), file);
     fclose(file);
 }
 
 void DeleteDAuth() {
-    remove("sdmc:/switch/S13Launcher/auth.json");
+    remove("sdmc:/switch/FortLatestLauncher/auth.json");
 }
 
 std::string getClientCredentials()
