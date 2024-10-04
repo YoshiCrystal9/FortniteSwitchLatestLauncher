@@ -165,7 +165,7 @@ int main(int argc, char* argv[])
         if (kDown & HidNpadButton_Plus)
             break;
 
-        //TESTING TESTING totally not copy pasting
+        //new code
         if (kDown & HidNpadButton_Y) {
             if(downloadFile(SIGPATCHES_URL, SIGPATCHES_FILENAME, OFF)){
                 if(isArchive(SIGPATCHES_FILENAME)){
