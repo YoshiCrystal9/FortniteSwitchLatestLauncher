@@ -8,15 +8,18 @@
 #include <dirent.h>
 #include <algorithm>
 
-#include "EpicGamesDAuthManager.h"
-#include "UE4CommandLineManager.h"
+#include "../include/EpicGamesDAuthManager.h"
+#include "../include/UE4CommandLineManager.h"
+#include "../include/download.hpp"
+#include "../include/utils.hpp"
+#include "../include/extract.hpp"
 
 // Include the main libnx system header, for Switch development
 #include <switch.h>
 #include <unistd.h>
 #include <curl/curl.h>
 
-#define VERSION "1.0.1" 
+#define VERSION "1.1"
 
 #define TRACE(fmt, ...)                                          \
     printf("%s: " fmt "\n", __PRETTY_FUNCTION__, ##__VA_ARGS__); \
@@ -99,7 +102,7 @@ void printDialog(bool actionCancelled, string message = "", bool clear = true) {
     printf("Version %s\n", VERSION);
     printf("Made by thisisanto and edited to work with latest by YoshiCrystal <3\n\n");
 
-    printf("A - Manage your account\nB - Launch Fortnite\nX - Restore CommandLine arguments\n+ - Exit\n\n");
+    printf("A - Manage your account\nB - Launch Fortnite\nX - Restore CommandLine arguments\nY - Test\n+ - Exit\n\n");
     consoleUpdate(NULL);
 }
 
@@ -160,7 +163,21 @@ int main(int argc, char* argv[])
         u64 kDown = padGetButtonsDown(&pad);
 
         if (kDown & HidNpadButton_Plus)
-            break; 
+            break;
+
+        //TESTING TESTING totally not copy pasting
+        if (kDown & HidNpadButton_Y) {
+            if(downloadFile(SIGPATCHES_URL, SIGPATCHES_FILENAME, OFF)){
+                if(isArchive(SIGPATCHES_FILENAME)){
+                    if(extract(SIGPATCHES_FILENAME)) printf("Successfully downloaded the archive and successfully extracted it", "[1;32m");
+                    else printf("Could not extract the archive.");
+                }
+                else printf("The download link is broken.");
+            }
+            else printf("Couldn't download the archive");
+        }
+
+        break;
 
         if (kDown & HidNpadButton_A) {
             json dauth = GetDAuth();
@@ -176,7 +193,7 @@ int main(int argc, char* argv[])
                     u64 kDown = padGetButtonsDown(&pad);
 
                     if (kDown & HidNpadButton_Plus)
-                        break; 
+                        break;
 
                     if (kDown & HidNpadButton_A) {
                         InitializeAuthProcess();
@@ -203,7 +220,7 @@ int main(int argc, char* argv[])
                     u64 kDown = padGetButtonsDown(&pad);
 
                     if (kDown & HidNpadButton_Plus)
-                        break; 
+                        break;
 
                     if (kDown & HidNpadButton_A) {
                         InitializeAuthProcess();
@@ -221,7 +238,7 @@ int main(int argc, char* argv[])
                             u64 kDown = padGetButtonsDown(&pad);
 
                             if (kDown & HidNpadButton_Plus)
-                                break; 
+                                break;
 
                             if (kDown & HidNpadButton_A) {
                                 DeleteDAuth();
@@ -254,7 +271,7 @@ int main(int argc, char* argv[])
 
             std::unordered_map<string, string> arguments = ParseUE4CommandLine("sdmc:/atmosphere/contents/010025400AECE000/romfs/UECommandLine.txt");
 
-            if (arguments["AUTH_TYPE"] != "exchangecode") 
+            if (arguments["AUTH_TYPE"] != "exchangecode")
                 storeOldUE4CommandLine(arguments);
 
             printf("Authenticating with Epic Games services...\n\n");

@@ -41,10 +41,10 @@ TARGET		:=	$(notdir $(CURDIR))
 APP_TITLE	:=	Fortnite Latest Launcher
 APP_AUTHOR	:=	Anto (Discord thisisanto), YoshiCrystal
 BUILD		:=	build
-SOURCES		:=	source
+SOURCES		:=	source libs/minizip/source
 DATA		:=	data
-INCLUDES	:=	include
-APP_VERSION	:=	1.0.1
+INCLUDES	:=	include libs/minizip/include
+APP_VERSION	:=	1.1
 ICON		:=	meta/icon.jpg
 #ROMFS	:=	romfs
 
