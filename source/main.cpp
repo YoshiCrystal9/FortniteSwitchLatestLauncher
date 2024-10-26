@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
     }
     fclose(file);
 
-    CheckForUpdates();
+    //CheckForUpdates();
 
     printDialog(false, "", false);
 
