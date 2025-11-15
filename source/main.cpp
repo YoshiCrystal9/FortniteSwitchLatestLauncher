@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <curl/curl.h>
 
-#define VERSION "1.0.1" 
+#define VERSION "1.0.2" 
 
 #define TRACE(fmt, ...)                                          \
     printf("%s: " fmt "\n", __PRETTY_FUNCTION__, ##__VA_ARGS__); \
@@ -202,8 +202,10 @@ int main(int argc, char* argv[])
 
                     u64 kDown = padGetButtonsDown(&pad);
 
-                    if (kDown & HidNpadButton_Plus)
+                    if (kDown & HidNpadButton_Plus) {
+                        printDialog(false);
                         break; 
+                    }
 
                     if (kDown & HidNpadButton_A) {
                         InitializeAuthProcess();
